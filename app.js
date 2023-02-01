@@ -11,6 +11,7 @@ function callAllThings() {
         .catch(error => console.log(error))
 }
 
+
 function getSongMetadata() {
     fetch("umSongData.json")
         .then(results => results.json())
