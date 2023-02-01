@@ -11,4 +11,26 @@ function callAllThings() {
         .catch(error => console.log(error))
 }
 
-callAllThings();
+
+function getSongMetadata() {
+    fetch("umSongData.json")
+        .then(results => results.json())
+        .then(data => {
+            var range = 20
+            for (i = 0; i < range; i++)
+                console.log(`Song: ${data[i]["Song Name"]}-- Played ${data[i]["Times Played Live"]} times`)
+            column = document.querySelector("col-4")
+            list = document.createElement("ul")
+            listItem = document.createElement("li")
+            dataNode = data[i]["Song Name"]
+            listData = document.createTextNode(dataNode)
+            listItem.appendChild(listData)
+            list.appendChild(listItem)
+            column.appendChild(list)
+            document.body.appendChild(column)
+
+        })
+        .catch(error => console.log(error))
+}
+
+getSongMetadata();
