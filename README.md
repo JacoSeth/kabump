@@ -17,5 +17,6 @@ Architecture Prospectus
             - Lyrics
             - Authors & Metadata
 2. Host app online
-3. Provide API?
+3. Update semi-frequently
+4. Provide API
     
