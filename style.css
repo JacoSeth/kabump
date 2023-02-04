@@ -2,11 +2,10 @@
     background-color: rgb(185, 146, 86);
 }
 
-.col-4 {
-    background-color: rgb(114, 63, 63);
-    color: white;
+.col-6 {
+    background-color: rgb(255, 255, 255)
 }
 
-.col-8 {
-    background-color: rgb(209, 151, 151);
+.col-6 {
+    background-color: rgb(255, 255, 255);
 }
