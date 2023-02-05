@@ -3,9 +3,62 @@
 }
 
 .col-6 {
-    background-color: rgb(255, 255, 255)
+    background-color: rgb(255, 255, 255);
+    height: 75%;
+    padding-left: 20px;
 }
 
-.col-6 {
+table {
+    padding-left: 20px;
+    display: table;
+    margin: auto;
+    width: 80%;
     background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px grey;
+    border-radius: 5px;
+}
+
+table>thead {
+    margin: auto;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    background-color: #dfdfdf;
+    border-radius: 7px 7px 0px 0px;
+}
+
+body>div.row>div.col-6>table>thead>tr {
+    display: flex;
+    width: 100%;
+}
+
+body>div.row>div.col-6>table>thead>tr>th {
+    display: inline-block;
+    width: 25%;
+}
+
+body>div.row>div.col-6>table>thead>tr>th>td {
+    display: block;
+    width: 100%;
+}
+
+body>div.row>div.col-6>table>tbody {
+    display: block;
+    /* cant change this display */
+    text-align: center;
+    background-color: #ffffff;
+    height: 550px;
+    overflow: scroll;
+    border-radius: 0px 0px 7px 7px;
+    padding: 10px 10px;
+}
+
+body>div.row>div.col-6>table>tbody>tr {
+    width: 100%;
+    display: flex;
+}
+
+body>div.row>div.col-6>table>tbody>tr>td {
+    display: inline-block;
+    width: 25%;
 }
