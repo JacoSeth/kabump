@@ -62,10 +62,10 @@ function getSongMetadata() {
             songTableHead.appendChild(th)
             songTable.appendChild(songTableHead)
 
-            var range = 20
+            // var range = 20
 
             // Build Table
-            for (i = 0; i < range; i++) {
+            for (i = 0; i < data.length; i++) {
 
                 // Create Elements, set class
                 const tr = document.createElement("tr")
@@ -85,7 +85,6 @@ function getSongMetadata() {
                 const tdCount = data[i]["Times Played Live"]
                 const tdShowGap = data[i]["Avg Show Gap"]
                 const tdLinkHrefVal = `https://allthings.umphreys.com${data[i]["Links"]}`
-                console.log(tdLinkHrefVal)
 
                 // Create Nodes for Values
                 tdTitleVal = document.createTextNode(tdTitle)
