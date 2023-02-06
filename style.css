@@ -62,3 +62,19 @@ body>div.row>div.col-6>table>tbody>tr>td {
     display: inline-block;
     width: 25%;
 }
+
+.table-foot {
+    display: block;
+    margin: auto;
+    background-color: #dfdfdf;
+}
+
+table>tfoot>tr {
+    width: 100%;
+    display: flex;
+}
+
+table>tfoot>tr>td {
+    display: block;
+    width: 100%/27;
+}
