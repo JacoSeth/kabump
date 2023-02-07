@@ -67,7 +67,6 @@ function displaySongData() {
                         song = song.toLowerCase()
                             // console.log(song)
                         if (song.startsWith(x) && firstListingForEach.hasOwnProperty(x) == false) {
-                            console.log(song)
                             firstListingForEach[`${x}`] = song
                         } else {
                             // console.log("fits else statement Randy")
@@ -78,11 +77,11 @@ function displaySongData() {
                 // call function on each letter
                 for (l = 0; l < letterString.length; l++) {
                     letter = letterString[l]
-                    console.log(letter)
+                        // console.log(letter)
                     returnFirstListing(letter);
                 }
 
-                console.log(firstListingForEach)
+                // console.log(firstListingForEach)
 
                 // Build Table Body
                 for (i = 0; i < data.length; i++) {
@@ -98,6 +97,8 @@ function displaySongData() {
                     const trShowGap = document.createElement("td")
                     trShowGap.className = "td-showgap"
                     const trLinkATag = document.createElement("a")
+                    const anchorTagDiv = document.createElement("div")
+                    const anchorTagLink = document.createElement("a")
 
                     // Define Values
                     const tdTitle = data[i]["Song Name"]
@@ -125,6 +126,17 @@ function displaySongData() {
                     // Hyperlink the title
                     trLinkATag.setAttribute("href", tdLinkHrefVal)
 
+                    // Hyperlink anchor tag w/in div
+
+                    for (j = 0; j < firstListingForEach.length; j++) {
+                        console.log(firstListingForEach)
+                        console.log(firstListingForEach[j])
+
+                        // if (firstListingForEach[s] == data[i]["Song Name"]) {
+                        //     console.log(`first listing for ${firstListingForEach[s]} matches ${data[i]["Song Name"]}`)
+                        // }
+                    }
+
                     // Add td elements to tr
                     tr.appendChild(trTitle)
                     tr.appendChild(trDebut)
@@ -150,63 +162,46 @@ function displaySongData() {
                 songTable.appendChild(songTableFoot)
                 column.appendChild(songTable)
             }
-
-
-            // Create Footer th Elements Dynamically
-            // const tf = document.createElement('tr')
-            // for (l = 0; l < letterString.length; l++) {
-            //     letterString = letterString.toUpperCase()
-            //     letterNode = letterString[l]
-            //     var elementTd = document.createElement("td")
-            //     var elementNode = document.createTextNode(letterNode)
-            //     elementTd.appendChild(elementNode)
-            //     tf.appendChild(elementTd)
-            // }
-            // songTableFoot.appendChild(tf)
-            // songTable.appendChild(songTableFoot)
-            // column.appendChild(songTable)
             buildTable();
         })
         .catch(error => console.log(error))
 }
-
-
-
-
 displaySongData();
 
 
-function fetchData() {
-    fetch("mockData.json")
-        .then(results => results.json())
-        .then(data => {
-            letterString = "abcdefghijklmnopqrstuvwxyz"
-            arrayFromData = []
-            firstOfEach = {}
-            data.forEach(d => {
-                arrayFromData.push(d.name)
-            })
-            arrayFromData = arrayFromData.sort()
+// function fetchData() {
+//     fetch("mockData.json")
+//         .then(results => results.json())
+//         .then(data => {
+//             letterString = "abcdefghijklmnopqrstuvwxyz"
+//             arrayFromData = []
+//             firstOfEach = {}
+//             data.forEach(d => {
+//                 arrayFromData.push(d.name)
+//             })
+//             arrayFromData = arrayFromData.sort()
 
-            function returnFirstMatch(input) {
-                arrayFromData.forEach(i => {
-                    i = i.toLowerCase()
-                    if (i.startsWith(input) && firstOfEach.hasOwnProperty(input) == false) {
-                        firstOfEach[`${input}`] = i
-                    } else {
-                        // console.log("nothing")
-                    }
-                })
-            }
+//             function returnFirstMatch(input) {
+//                 arrayFromData.forEach(i => {
+//                     i = i.toLowerCase()
+//                     if (i.startsWith(input) && firstOfEach.hasOwnProperty(input) == false) {
+//                         firstOfEach[`
+//                                         $ { input }
+//                                         `] = i
+//                     } else {
+//                         // console.log("nothing")
+//                     }
+//                 })
+//             }
 
-            for (l = 0; l < letterString.length; l++) {
-                letter = letterString[l]
-                console.log(letter)
-                    // returnFirstMatch(letter)
-            }
-            console.log(firstOfEach)
+//             for (l = 0; l < letterString.length; l++) {
+//                 letter = letterString[l]
+//                 console.log(letter)
+//                     // returnFirstMatch(letter)
+//             }
+//             console.log(firstOfEach)
 
-            returnFirstMatch();
-        })
-}
+//             returnFirstMatch();
+//         })
+// }
 // fetchData();
