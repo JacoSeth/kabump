@@ -1,3 +1,9 @@
+firstListingForEach = []
+simpleArray = []
+arrayFromSongData = []
+narrayFromSongData = []
+    // songArray = []
+
 function displaySongData() {
     fetch("umSongData.json")
         .then(results => results.json())
@@ -51,45 +57,26 @@ function displaySongData() {
                 songTableHead.appendChild(th)
                 songTable.appendChild(songTableHead)
 
-                // Get the first entry of each letter for anchor tag
+                // // Get the first entry of each letter for anchor tag
                 letterString = "abcdefghijklmnopqrstuvwxyz"
-                arrayFromSongData = []
-                firstListingForEach = {}
-
-                // populate the array
-                data.forEach(d => {
-                    arrayFromSongData.push(d["Song Name"])
-                })
-
-                // define function to call on each letter
-                function returnFirstListing(x) {
-                    arrayFromSongData.forEach(song => {
-                        song = song.toLowerCase()
-                            // console.log(song)
-                        if (song.startsWith(x) && firstListingForEach.hasOwnProperty(x) == false) {
-                            firstListingForEach[`${x}`] = song
-                        } else {
-                            // console.log("fits else statement Randy")
-                        }
-                    })
-                }
-
-                // call function on each letter
-                for (l = 0; l < letterString.length; l++) {
-                    letter = letterString[l]
-                        // console.log(letter)
-                    returnFirstListing(letter);
-                }
-
-                // console.log(firstListingForEach)
 
                 // Build Table Body
                 for (i = 0; i < data.length; i++) {
 
+                    // Define Values
+                    const tdTitle = data[i]["Song Name"]
+                    tdTitleStrip = tdTitle.replace(/[^a-zA-Z0-9 ]/g, "")
+                    tdTitleStrip = tdTitleStrip.replace(/\s+/g, '-')
+                        // console.log(tdTitleStrip)
+                    const tdDebut = data[i]["Debut Date"]
+                    const tdCount = data[i]["Times Played Live"]
+                    const tdShowGap = data[i]["Avg Show Gap"]
+                    const tdLinkHrefVal = `https://allthings.umphreys.com${data[i]["Links"]}`
+
                     // Create Elements, set class
                     const tr = document.createElement("tr")
                     const trTitle = document.createElement("td")
-                    trTitle.className = "td-title"
+                    trTitle.className = `${tdTitleStrip.toLowerCase()}` //Adding a classname of the Song Title to match the anchor tag
                     const trDebut = document.createElement("td")
                     trDebut.className = "td-debut"
                     const trCount = document.createElement("td")
@@ -97,15 +84,14 @@ function displaySongData() {
                     const trShowGap = document.createElement("td")
                     trShowGap.className = "td-showgap"
                     const trLinkATag = document.createElement("a")
-                    const anchorTagDiv = document.createElement("div")
-                    const anchorTagLink = document.createElement("a")
 
-                    // Define Values
-                    const tdTitle = data[i]["Song Name"]
-                    const tdDebut = data[i]["Debut Date"]
-                    const tdCount = data[i]["Times Played Live"]
-                    const tdShowGap = data[i]["Avg Show Gap"]
-                    const tdLinkHrefVal = `https://allthings.umphreys.com${data[i]["Links"]}`
+
+                    // // Define Values
+                    // const tdTitle = data[i]["Song Name"]
+                    // const tdDebut = data[i]["Debut Date"]
+                    // const tdCount = data[i]["Times Played Live"]
+                    // const tdShowGap = data[i]["Avg Show Gap"]
+                    // const tdLinkHrefVal = `https://allthings.umphreys.com${data[i]["Links"]}`
 
                     // Create Nodes for Values
                     tdTitleVal = document.createTextNode(tdTitle)
@@ -126,16 +112,7 @@ function displaySongData() {
                     // Hyperlink the title
                     trLinkATag.setAttribute("href", tdLinkHrefVal)
 
-                    // Hyperlink anchor tag w/in div
-
-                    for (j = 0; j < firstListingForEach.length; j++) {
-                        console.log(firstListingForEach)
-                        console.log(firstListingForEach[j])
-
-                        // if (firstListingForEach[s] == data[i]["Song Name"]) {
-                        //     console.log(`first listing for ${firstListingForEach[s]} matches ${data[i]["Song Name"]}`)
-                        // }
-                    }
+                    // addAnchors();
 
                     // Add td elements to tr
                     tr.appendChild(trTitle)
@@ -146,6 +123,7 @@ function displaySongData() {
                     // Add tr to table body
                     songTableBody.appendChild(tr)
                 }
+
                 songTable.appendChild(songTableBody)
 
                 // Create Footer th Elements Dynamically
@@ -161,47 +139,71 @@ function displaySongData() {
                 songTableFoot.appendChild(tf)
                 songTable.appendChild(songTableFoot)
                 column.appendChild(songTable)
+
+                return firstListingForEach
             }
             buildTable();
+            // console.log(firstListingForEach)
+            return firstListingForEach
         })
         .catch(error => console.log(error))
 }
+
 displaySongData();
 
+async function getSetAnchorTags() {
+    fetch("umSongData.json")
+        .then(results => results.json())
+        .then(data => {
+            songArray = []
+                // Get the first entry of each letter for anchor tag
+            letterString = "abcdefghijklmnopqrstuvwxyz"
 
-// function fetchData() {
-//     fetch("mockData.json")
-//         .then(results => results.json())
-//         .then(data => {
-//             letterString = "abcdefghijklmnopqrstuvwxyz"
-//             arrayFromData = []
-//             firstOfEach = {}
-//             data.forEach(d => {
-//                 arrayFromData.push(d.name)
-//             })
-//             arrayFromData = arrayFromData.sort()
+            // populate the array
+            data.forEach(d => {
+                narrayFromSongData.push(d["Song Name"])
+            })
+            console.log(narrayFromSongData)
 
-//             function returnFirstMatch(input) {
-//                 arrayFromData.forEach(i => {
-//                     i = i.toLowerCase()
-//                     if (i.startsWith(input) && firstOfEach.hasOwnProperty(input) == false) {
-//                         firstOfEach[`
-//                                         $ { input }
-//                                         `] = i
-//                     } else {
-//                         // console.log("nothing")
-//                     }
-//                 })
-//             }
+            // define function to call on each letter
+            function returnFirstListing(x) {
+                holder = {}
+                narrayFromSongData.forEach(song => {
+                    song = song.replace(/[^a-zA-Z0-9 ]/g, "")
+                    song = song.replace(/\s+/g, '-')
+                    song = song.toLowerCase()
+                    console.log(song)
+                    if (song.startsWith(x) && holder.hasOwnProperty(x) == false) {
+                        holder[`${x}`] = song
+                        songArray.push(song.toLowerCase())
+                    } else {
+                        // do nothing
+                    }
+                })
 
-//             for (l = 0; l < letterString.length; l++) {
-//                 letter = letterString[l]
-//                 console.log(letter)
-//                     // returnFirstMatch(letter)
-//             }
-//             console.log(firstOfEach)
+                // Add an ID so we can route links to each
+                for (i = 0; i < songArray.length; i++) {
+                    song = songArray[i]
+                        // console.log(song)
+                    const listing = document.querySelector(`.${songArray[i]}`)
+                    listing.id = `anchor-${songArray[i]}`
+                    hrefInternalRoute = listing.id
+                    scrollElement = document.createElement("p")
+                    scrollAnchorTag = document.createElement("a")
+                    console.log(listing.id)
+                    scrollAnchorTag.setAttribute("href", `#${listing.id}`)
+                }
 
-//             returnFirstMatch();
-//         })
-// }
-// fetchData();
+            }
+
+            // call function on each letter
+            for (l = 0; l < letterString.length; l++) {
+                letter = letterString[l]
+
+                returnFirstListing(letter);
+            }
+
+        })
+        .catch(error => console.log(error))
+}
+getSetAnchorTags();
