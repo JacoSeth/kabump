@@ -167,6 +167,8 @@ async function getSetAnchorTags() {
             narrayFromSongData.sort()
             console.log(narrayFromSongData)
 
+            // Need to re-sort list after the special characters are removed
+
             // define function to call on each letter
             function returnFirstListing(x) {
                 holder = {}
