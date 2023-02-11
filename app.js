@@ -163,6 +163,8 @@ async function getSetAnchorTags() {
             data.forEach(d => {
                 narrayFromSongData.push(d["Song Name"])
             })
+
+            narrayFromSongData.sort()
             console.log(narrayFromSongData)
 
             // define function to call on each letter
