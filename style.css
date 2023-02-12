@@ -8,6 +8,20 @@
     padding-left: 20px;
 }
 
+
+/* Need to set width so that the table header doesn't shrink */
+
+.nav-container {
+    display: flex;
+    background-color: aqua;
+}
+
+.navchar {
+    display: inline-block;
+    margin: auto;
+    width: 100%/27;
+}
+
 table {
     padding-left: 20px;
     display: table;

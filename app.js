@@ -1,11 +1,31 @@
-firstListingForEach = []
 simpleArray = []
 arrayFromSongData = []
-narrayFromSongData = []
-    // songArray = []
+arrayFromSongData = []
+mysongArray = []
+
+function buildNav() {
+    const col = document.querySelector(".col-6")
+    const charContainer = document.createElement("div")
+    charContainer.classList = ["nav-container"]
+    const charString = "1abcdefghijklmnopqrstuvwxyz"
+    for (i = 0; i < charString.length; i++) {
+        // container = document.querySelector(".nav-container")
+        char = charString[i]
+        charElement = document.createElement("p")
+        charElement.className = "navchar"
+        charElement.id = `nav-${char}`
+        charNode = document.createTextNode(char)
+        charElement.appendChild(charNode)
+        charContainer.appendChild(charElement)
+        col.appendChild(charContainer)
+    }
+    document.body.appendChild(col)
+}
+
+buildNav();
 
 function displaySongData() {
-    fetch("umSongData.json")
+    fetch("umphreysJSONCached.json")
         .then(results => results.json())
         .then(data => {
             function buildTable() {
@@ -19,8 +39,8 @@ function displaySongData() {
                 songTableHead.className = "table-head"
                 const songTableBody = document.createElement("tbody")
                 songTableBody.className = "table-body"
-                const songTableFoot = document.createElement("tfoot")
-                songTableFoot.className = "table-foot"
+                    // const songTableFoot = document.createElement("tfoot")
+                    // songTableFoot.className = "table-foot"
 
                 // Create Head Elements
                 const th = document.createElement("tr")
@@ -57,26 +77,24 @@ function displaySongData() {
                 songTableHead.appendChild(th)
                 songTable.appendChild(songTableHead)
 
-                // // Get the first entry of each letter for anchor tag
-                letterString = "abcdefghijklmnopqrstuvwxyz"
-
                 // Build Table Body
                 for (i = 0; i < data.length; i++) {
 
                     // Define Values
                     const tdTitle = data[i]["Song Name"]
-                    tdTitleStrip = tdTitle.replace(/[^a-zA-Z0-9 ]/g, "")
-                    tdTitleStrip = tdTitleStrip.replace(/\s+/g, '-')
-                        // console.log(tdTitleStrip)
+
+                    // console.log(tdTitleStrip)
                     const tdDebut = data[i]["Debut Date"]
                     const tdCount = data[i]["Times Played Live"]
                     const tdShowGap = data[i]["Avg Show Gap"]
                     const tdLinkHrefVal = `https://allthings.umphreys.com${data[i]["Links"]}`
+                    const titleStrip = data[i]["Song Name Sort"]
+                        // console.log(titleStrip)
 
                     // Create Elements, set class
                     const tr = document.createElement("tr")
                     const trTitle = document.createElement("td")
-                    trTitle.className = `${tdTitleStrip.toLowerCase()}` //Adding a classname of the Song Title to match the anchor tag
+                    trTitle.className = titleStrip //Adding a classname of the Song Title to match the anchor tag
                     const trDebut = document.createElement("td")
                     trDebut.className = "td-debut"
                     const trCount = document.createElement("td")
@@ -127,86 +145,72 @@ function displaySongData() {
                 songTable.appendChild(songTableBody)
 
                 // Create Footer th Elements Dynamically
-                const tf = document.createElement('tr')
-                for (l = 0; l < letterString.length; l++) {
-                    letterString = letterString.toUpperCase()
-                    letterNode = letterString[l]
-                    var elementTd = document.createElement("td")
-                    var elementNode = document.createTextNode(letterNode)
-                    elementTd.appendChild(elementNode)
-                    tf.appendChild(elementTd)
-                }
-                songTableFoot.appendChild(tf)
-                songTable.appendChild(songTableFoot)
+                // const tf = document.createElement('tr')
+                // for (l = 0; l < letterString.length; l++) {
+                //     letterString = letterString.toUpperCase()
+                //     letterNode = letterString[l]
+                //     var elementTd = document.createElement("td")
+                //     var elementNode = document.createTextNode(letterNode)
+                //     elementTd.appendChild(elementNode)
+                //     tf.appendChild(elementTd)
+                // }
+                // songTableFoot.appendChild(tf)
+                // songTable.appendChild(songTableFoot)
                 column.appendChild(songTable)
-
-                return firstListingForEach
             }
             buildTable();
-            // console.log(firstListingForEach)
-            return firstListingForEach
         })
         .catch(error => console.log(error))
 }
 
 displaySongData();
 
+
 async function getSetAnchorTags() {
-    fetch("umSongData.json")
+
+    fetch("umphreysJSONCached.json")
         .then(results => results.json())
         .then(data => {
-            songArray = []
-                // Get the first entry of each letter for anchor tag
-            letterString = "abcdefghijklmnopqrstuvwxyz"
+
+            // Get the first entry of each letter for anchor tag
+            letterString = "1abcdefghijklmnopqrstuvwxyz"
 
             // populate the array
             data.forEach(d => {
-                narrayFromSongData.push(d["Song Name"])
+                arrayFromSongData.push(d["Song Name Sort"])
             })
 
-            narrayFromSongData.sort()
-            console.log(narrayFromSongData)
-
-            // Need to re-sort list after the special characters are removed
-
-            // define function to call on each letter
+            // define function to call on each character in letterString
             function returnFirstListing(x) {
                 holder = {}
-                narrayFromSongData.forEach(song => {
-                    song = song.replace(/[^a-zA-Z0-9 ]/g, "")
-                    song = song.replace(/\s+/g, '-')
-                    song = song.toLowerCase()
-                    console.log(song)
-                    if (song.startsWith(x) && holder.hasOwnProperty(x) == false) {
-                        holder[`${x}`] = song
-                        songArray.push(song.toLowerCase())
-                    } else {
-                        // do nothing
-                    }
-                })
-
-                // Add an ID so we can route links to each
-                for (i = 0; i < songArray.length; i++) {
-                    song = songArray[i]
+                arrayFromSongData.forEach(song => {
                         // console.log(song)
-                    const listing = document.querySelector(`.${songArray[i]}`)
-                    listing.id = `anchor-${songArray[i]}`
+                        if (song.startsWith(x) && holder.hasOwnProperty(x) == false) {
+                            holder[`${x}`] = song
+                            mysongArray.push(song)
+                        } else {
+                            // console.log(`the song that starts with ${x} is ${holder[`${x}`]}`)
+                        }
+                    })
+                    // Add an ID so we can route links to each
+                for (i = 0; i < mysongArray.length; i++) {
+                    const listing = document.querySelector(`[class ="${mysongArray[i]}" ]`)
+                    listing.id = `anchor-${mysongArray[i]}`
+                    console.log(listing)
                     hrefInternalRoute = listing.id
                     scrollElement = document.createElement("p")
                     scrollAnchorTag = document.createElement("a")
-                    console.log(listing.id)
                     scrollAnchorTag.setAttribute("href", `#${listing.id}`)
                 }
 
             }
 
             // call function on each letter
+            console.log(letterString.length)
             for (l = 0; l < letterString.length; l++) {
-                letter = letterString[l]
-
-                returnFirstListing(letter);
+                char = letterString[l]
+                returnFirstListing(char);
             }
-
         })
         .catch(error => console.log(error))
 }

@@ -4,6 +4,8 @@ import json
 import pandas as pd
 import re
 
+# resource if needed later https://scrapeops.io/web-scraping-playbook/how-to-bypass-cloudflare/#option-2-scrape-google-cache-version
+
 def get_UM (): 
 
     url = "https://webcache.googleusercontent.com/search?q=cache:https://allthings.umphreys.com/song/"
