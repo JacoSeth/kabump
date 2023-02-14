@@ -144,18 +144,6 @@ function displaySongData() {
 
                 songTable.appendChild(songTableBody)
 
-                // Create Footer th Elements Dynamically
-                // const tf = document.createElement('tr')
-                // for (l = 0; l < letterString.length; l++) {
-                //     letterString = letterString.toUpperCase()
-                //     letterNode = letterString[l]
-                //     var elementTd = document.createElement("td")
-                //     var elementNode = document.createTextNode(letterNode)
-                //     elementTd.appendChild(elementNode)
-                //     tf.appendChild(elementTd)
-                // }
-                // songTableFoot.appendChild(tf)
-                // songTable.appendChild(songTableFoot)
                 column.appendChild(songTable)
             }
             buildTable();
@@ -196,17 +184,21 @@ async function getSetAnchorTags() {
                 for (i = 0; i < mysongArray.length; i++) {
                     const listing = document.querySelector(`[class ="${mysongArray[i]}" ]`)
                     listing.id = `anchor-${mysongArray[i]}`
-                    console.log(listing)
+                        // console.log(listing)
                     hrefInternalRoute = listing.id
                     scrollElement = document.createElement("p")
-                    scrollAnchorTag = document.createElement("a")
-                    scrollAnchorTag.setAttribute("href", `#${listing.id}`)
+                        // ###################
+                        // find the navchar item matching i, then create a link /add href to that item
+                    itemToTag = document.getElementsByClassName(`nav-${i}`)
+                    scrollTag = document.createElement("a")
+                    scrollTag.setAttribute("href", `#${listing.id}`)
+                    itemToTag.appendChild(scrollTag)
                 }
 
             }
 
             // call function on each letter
-            console.log(letterString.length)
+            // console.log(letterString.length)
             for (l = 0; l < letterString.length; l++) {
                 char = letterString[l]
                 returnFirstListing(char);

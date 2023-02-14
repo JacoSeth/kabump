@@ -24,7 +24,7 @@
 
 table {
     padding-left: 20px;
-    display: table;
+    display: block;
     margin: auto;
     width: 80%;
     background-color: rgb(255, 255, 255);
@@ -32,23 +32,23 @@ table {
     border-radius: 5px;
 }
 
-table>thead {
+body>div.col-6>table>thead {
     margin: auto;
     display: inline-block;
     width: 100%;
-    text-align: center;
     background-color: #dfdfdf;
     border-radius: 7px 7px 0px 0px;
 }
 
-body>div.row>div.col-6>table>thead>tr {
-    display: flex;
+body>div.col-6>table>thead>tr {
     width: 100%;
+    text-align: right;
 }
 
-body>div.row>div.col-6>table>thead>tr>th {
-    display: inline-block;
-    width: 25%;
+body>div.col-6>table>thead>tr>th {
+    display: inline-flex;
+    width: 100/4%;
+    text-align: center;
 }
 
 body>div.row>div.col-6>table>thead>tr>th>td {
@@ -56,7 +56,7 @@ body>div.row>div.col-6>table>thead>tr>th>td {
     width: 100%;
 }
 
-body>div.row>div.col-6>table>tbody {
+body>div.col-6>table>tbody {
     display: block;
     /* cant change this display */
     text-align: center;
@@ -67,7 +67,7 @@ body>div.row>div.col-6>table>tbody {
     padding: 10px 10px;
 }
 
-body>div.row>div.col-6>table>tbody>tr {
+*/ body>div.row>div.col-6>table>tbody>tr {
     width: 100%;
     display: flex;
 }
@@ -75,20 +75,4 @@ body>div.row>div.col-6>table>tbody>tr {
 body>div.row>div.col-6>table>tbody>tr>td {
     display: inline-block;
     width: 25%;
-}
-
-.table-foot {
-    display: block;
-    margin: auto;
-    background-color: #dfdfdf;
-}
-
-table>tfoot>tr {
-    width: 100%;
-    display: flex;
-}
-
-table>tfoot>tr>td {
-    display: block;
-    width: 100%/27;
 }
