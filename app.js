@@ -1,7 +1,8 @@
-simpleArray = []
-arrayFromSongData = []
-arrayFromSongData = []
-mysongArray = []
+const simpleArray = []
+const arrayFromSongData = []
+const mysongArray = []
+const charString = "1abcdefghijklmnopqrstuvwxyz"
+
 
 function buildNav() {
     const col = document.querySelector(".col-6")
@@ -11,7 +12,7 @@ function buildNav() {
     for (i = 0; i < charString.length; i++) {
         // container = document.querySelector(".nav-container")
         char = charString[i]
-        charElement = document.createElement("p")
+        charElement = document.createElement("a")
         charElement.className = "navchar"
         charElement.id = `nav-${char}`
         charNode = document.createTextNode(char)
@@ -21,7 +22,6 @@ function buildNav() {
     }
     document.body.appendChild(col)
 }
-
 buildNav();
 
 function displaySongData() {
@@ -31,6 +31,10 @@ function displaySongData() {
             function buildTable() {
                 // Select column for table
                 const column = document.querySelector(".col-6")
+
+                // Wrapper Div to set scroll
+                const wrapper = document.createElement("div")
+                wrapper.className = "table-wrap"
 
                 // Create Table 
                 const songTable = document.createElement('table')
@@ -52,8 +56,8 @@ function displaySongData() {
                 // Create Col Names
                 const songTitle = "Title"
                 const songDebut = "Debut"
-                const songCount = "Times Played"
-                const showGap = "Avg Show Gap"
+                const songCount = "Played"
+                const showGap = "Gap"
 
                 // Add strings to text nodes
                 const thTitleVal = document.createTextNode(songTitle)
@@ -103,14 +107,6 @@ function displaySongData() {
                     trShowGap.className = "td-showgap"
                     const trLinkATag = document.createElement("a")
 
-
-                    // // Define Values
-                    // const tdTitle = data[i]["Song Name"]
-                    // const tdDebut = data[i]["Debut Date"]
-                    // const tdCount = data[i]["Times Played Live"]
-                    // const tdShowGap = data[i]["Avg Show Gap"]
-                    // const tdLinkHrefVal = `https://allthings.umphreys.com${data[i]["Links"]}`
-
                     // Create Nodes for Values
                     tdTitleVal = document.createTextNode(tdTitle)
                     tdDebutVal = document.createTextNode(tdDebut)
@@ -129,6 +125,8 @@ function displaySongData() {
 
                     // Hyperlink the title
                     trLinkATag.setAttribute("href", tdLinkHrefVal)
+                    trLinkATag.setAttribute("target", "_blank")
+
 
                     // addAnchors();
 
@@ -144,13 +142,14 @@ function displaySongData() {
 
                 songTable.appendChild(songTableBody)
 
-                column.appendChild(songTable)
+                wrapper.appendChild(songTable)
+
+                column.appendChild(wrapper)
             }
             buildTable();
         })
         .catch(error => console.log(error))
 }
-
 displaySongData();
 
 
@@ -183,18 +182,10 @@ async function getSetAnchorTags() {
                     // Add an ID so we can route links to each
                 for (i = 0; i < mysongArray.length; i++) {
                     const listing = document.querySelector(`[class ="${mysongArray[i]}" ]`)
-                    listing.id = `anchor-${mysongArray[i]}`
+                    listing.id = `anchor-${mysongArray[i][0]}`
                         // console.log(listing)
                     hrefInternalRoute = listing.id
-                    scrollElement = document.createElement("p")
-                        // ###################
-                        // find the navchar item matching i, then create a link /add href to that item
-                    itemToTag = document.getElementsByClassName(`nav-${i}`)
-                    scrollTag = document.createElement("a")
-                    scrollTag.setAttribute("href", `#${listing.id}`)
-                    itemToTag.appendChild(scrollTag)
                 }
-
             }
 
             // call function on each letter
@@ -203,6 +194,22 @@ async function getSetAnchorTags() {
                 char = letterString[l]
                 returnFirstListing(char);
             }
+            // Placing anchors in nav elements
+            function placeAnchors() {
+                for (i = 0; i < charString.length; i++) {
+                    char = charString[i]
+                    console.log(char)
+                        // find the element in the nav
+                    const itemToTag = document.getElementById(`nav-${char}`)
+                    console.log(itemToTag)
+                    const scrollATag = document.createElement("a")
+                    const scrollATagVal = `#anchor-${char}`
+                    itemToTag.setAttribute("href", scrollATagVal)
+                        // scrollATag.appendChild(scrollATagNode)
+                }
+            }
+            placeAnchors();
+
         })
         .catch(error => console.log(error))
 }
