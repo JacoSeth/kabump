@@ -21,7 +21,9 @@ a {
 }
 
 a:hover {
+    color: rgb(0, 173, 115);
     text-decoration: none;
+    opacity: 50%;
 }
 
 a:active {
