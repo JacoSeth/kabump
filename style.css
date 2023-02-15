@@ -61,6 +61,7 @@ body>div.col-6>div.table-wrap>table>thead th:nth-child(4) {
 body>div.col-6>div.table-wrap>table>thead {
     background-color: #dfdfdf;
     border-radius: 7px 7px 0px 0px;
+    position: sticky;
 }
 
 body>div.col-6>table>tbody {

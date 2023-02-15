@@ -93,7 +93,6 @@ function displaySongData() {
                     const tdShowGap = data[i]["Avg Show Gap"]
                     const tdLinkHrefVal = `https://allthings.umphreys.com${data[i]["Links"]}`
                     const titleStrip = data[i]["Song Name Sort"]
-                        // console.log(titleStrip)
 
                     // Create Elements, set class
                     const tr = document.createElement("tr")
@@ -145,6 +144,7 @@ function displaySongData() {
                 wrapper.appendChild(songTable)
 
                 column.appendChild(wrapper)
+
             }
             buildTable();
         })
@@ -198,11 +198,8 @@ async function getSetAnchorTags() {
             function placeAnchors() {
                 for (i = 0; i < charString.length; i++) {
                     char = charString[i]
-                    console.log(char)
                         // find the element in the nav
                     const itemToTag = document.getElementById(`nav-${char}`)
-                    console.log(itemToTag)
-                    const scrollATag = document.createElement("a")
                     const scrollATagVal = `#anchor-${char}`
                     itemToTag.setAttribute("href", scrollATagVal)
                         // scrollATag.appendChild(scrollATagNode)
