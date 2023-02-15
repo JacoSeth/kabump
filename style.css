@@ -13,7 +13,8 @@
 
 .nav-container {
     display: flex;
-    background-color: aqua;
+    padding-bottom: 5px;
+    /* padding-left: 25px; */
 }
 
 .navchar {
@@ -22,57 +23,57 @@
     width: 100%/27;
 }
 
+.table-wrap {
+    height: 550px;
+    overflow: scroll;
+}
+
 table {
     padding-left: 20px;
-    display: block;
+    /* display: block; */
     margin: auto;
     width: 80%;
+    table-layout: fixed;
     background-color: rgb(255, 255, 255);
     box-shadow: 5px 5px grey;
     border-radius: 5px;
 }
 
-body>div.col-6>table>thead {
-    margin: auto;
-    display: inline-block;
-    width: 100%;
+body>div.col-6>div.table-wrap>table>thead>tr>th:nth-child(1) {
+    background-color: aquamarine;
+}
+
+body>div.col-6>div.table-wrap>table>thead th:nth-child(2) {
+    width: 20%;
+    background-color: rgb(161, 161, 243);
+}
+
+body>div.col-6>div.table-wrap>table>thead th:nth-child(3) {
+    width: 20%;
+    background-color: yellow;
+}
+
+body>div.col-6>div.table-wrap>table>thead th:nth-child(4) {
+    width: 20%;
+    background-color: rgb(206, 96, 96);
+}
+
+body>div.col-6>div.table-wrap>table>thead {
     background-color: #dfdfdf;
     border-radius: 7px 7px 0px 0px;
 }
 
-body>div.col-6>table>thead>tr {
-    width: 100%;
-    text-align: right;
-}
-
-body>div.col-6>table>thead>tr>th {
-    display: inline-flex;
-    width: 100/4%;
-    text-align: center;
-}
-
-body>div.row>div.col-6>table>thead>tr>th>td {
-    display: block;
-    width: 100%;
-}
-
 body>div.col-6>table>tbody {
-    display: block;
-    /* cant change this display */
-    text-align: center;
-    background-color: #ffffff;
-    height: 550px;
-    overflow: scroll;
     border-radius: 0px 0px 7px 7px;
     padding: 10px 10px;
 }
 
 */ body>div.row>div.col-6>table>tbody>tr {
     width: 100%;
-    display: flex;
+    display: table;
 }
 
 body>div.row>div.col-6>table>tbody>tr>td {
-    display: inline-block;
+    text-align: center;
     width: 25%;
 }
