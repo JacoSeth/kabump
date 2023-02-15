@@ -54,6 +54,7 @@ function displaySongData() {
 
                 // Create Head Elements
                 const th = document.createElement("tr")
+                th.className = "table-head-row"
                 const thTitle = document.createElement("th")
                 thTitle.className = "th-title"
                 const thDebut = document.createElement("th")
@@ -107,7 +108,9 @@ function displaySongData() {
 
                     // Create Elements, set class
                     const tr = document.createElement("tr")
+                    tr.className = "table-body-row"
                     const trTitle = document.createElement("td")
+                    trTitle.classList.add("td-title")
                     trTitle.className = titleStrip //Adding a classname of the Song Title to match the anchor tag
                     const trDebut = document.createElement("td")
                     trDebut.className = "td-debut"
@@ -193,6 +196,8 @@ async function getSetAnchorTags() {
                     // Add an ID so we can route links to each
                 for (i = 0; i < mysongArray.length; i++) {
                     const listing = document.querySelector(`[class ="${mysongArray[i]}" ]`)
+                    listing.classList.add(`anchor-${mysongArray[i][0]}`)
+                    listing.classList.add("td-title")
                     listing.id = `anchor-${mysongArray[i][0]}`
                         // console.log(listing)
                     hrefInternalRoute = listing.id
