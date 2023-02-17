@@ -32,7 +32,7 @@ function displaySongData() {
                 // Select column for table, and row for column
                 const row = document.querySelector(".row")
                 const column = document.querySelector(".col-6")
-                column.classList.add("order-first")
+                column.classList.add("order-1")
 
                 // Wrapper Div to set scroll
                 const wrapper = document.createElement("div")
@@ -112,8 +112,9 @@ function displaySongData() {
                     const tr = document.createElement("tr")
                     tr.className = "table-body-row"
                     const trTitle = document.createElement("td")
-                    trTitle.classList.add("td-title")
-                    trTitle.className = titleStrip //Adding a classname of the Song Title to match the anchor tag
+                        // ########
+                    trTitle.setAttribute('data-id', `${titleStrip}`)
+                        // trTitle.classList.add(titleStrip) //Adding a classname of the Song Title to match the anchor tag
                     const trDebut = document.createElement("td")
                     trDebut.className = "td-debut"
                     const trCount = document.createElement("td")
@@ -171,7 +172,7 @@ function displaySongData() {
 displaySongData();
 
 
-async function getSetAnchorTags() {
+function getSetAnchorTags() {
 
     fetch("umphreysJSONCached.json")
         .then(results => results.json())
@@ -182,8 +183,9 @@ async function getSetAnchorTags() {
 
             // populate the array
             data.forEach(d => {
-                arrayFromSongData.push(d["Song Name Sort"])
-            })
+                    arrayFromSongData.push(d["Song Name Sort"])
+                })
+                // arrayFromSongData = (983)['1000placestoseebeforeyoudie', '10thgrade', '1348', '13days', '19', '1901jump', '1999', '25or6to4', '2ndself', '2x2'...]
 
             // define function to call on each character in letterString
             function returnFirstListing(x) {
@@ -193,19 +195,26 @@ async function getSetAnchorTags() {
                         if (song.startsWith(x) && holder.hasOwnProperty(x) == false) {
                             holder[`${x}`] = song
                             mysongArray.push(song)
+                            console.log("pushed" + x)
                         } else {
                             // console.log(`the song that starts with ${x} is ${holder[`${x}`]}`)
+                            console.log("moving to next letter")
                         }
                     })
+                    // ^^^ Nothing wrong with this function
+
+                console.log(mysongArray)
                     // Add an ID so we can route links to each
                 for (i = 0; i < mysongArray.length; i++) {
-                    console.log(mysongArray)
-                    const listing = document.querySelector(`[class ="${mysongArray[i]}" ]`)
+                    // _____________________________________we're only making it through two iterations of this loop__________________________
+                    const listing = document.querySelector(`[data-id="${mysongArray[i]}"]`)
+                        // const listing = document.querySelector(`[class ="${mysongArray[i]}" ]`)
+                    const songTitle = mysongArray[i]
+                        // const listing = document.querySelector(`.${songTitle}`)
+                        // Problem assigning class for this Element, or finding this element's class. Find where you assign the class
                     listing.classList.add(`anchor-${mysongArray[i][0]}`)
-                        // listing.classList.add("td-title")
+                    console.log(listing)
                     listing.id = `anchor-${mysongArray[i][0]}`
-                        // console.log(listing)
-                    hrefInternalRoute = listing.id
                 }
             }
 
