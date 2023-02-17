@@ -29,8 +29,10 @@ function displaySongData() {
         .then(results => results.json())
         .then(data => {
             function buildTable() {
-                // Select column for table
+                // Select column for table, and row for column
+                const row = document.querySelector(".row")
                 const column = document.querySelector(".col-6")
+                column.classList.add("order-first")
 
                 // Wrapper Div to set scroll
                 const wrapper = document.createElement("div")
@@ -159,6 +161,8 @@ function displaySongData() {
 
                 column.appendChild(wrapper)
 
+                row.appendChild(column)
+
             }
             buildTable();
         })
@@ -195,9 +199,10 @@ async function getSetAnchorTags() {
                     })
                     // Add an ID so we can route links to each
                 for (i = 0; i < mysongArray.length; i++) {
+                    console.log(mysongArray)
                     const listing = document.querySelector(`[class ="${mysongArray[i]}" ]`)
                     listing.classList.add(`anchor-${mysongArray[i][0]}`)
-                    listing.classList.add("td-title")
+                        // listing.classList.add("td-title")
                     listing.id = `anchor-${mysongArray[i][0]}`
                         // console.log(listing)
                     hrefInternalRoute = listing.id

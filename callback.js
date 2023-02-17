@@ -1,0 +1,4 @@
+// buildNav();
+// displaySongData();
+// getSetAnchorTags();
+// fetchLyrics();

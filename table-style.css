@@ -48,7 +48,7 @@ a:active {
 }
 
 .table-wrap {
-    height: 600px;
+    height: 550px;
     overflow: scroll;
 }
 
@@ -103,7 +103,7 @@ table {
 body>div.col-6>div>table>tbody {
     padding-left: 50px;
     font-weight: 300;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(217, 215, 215);
     border-radius: 0px 0px 7px 7px;
 }
 
