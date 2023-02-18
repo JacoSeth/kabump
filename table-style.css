@@ -58,7 +58,7 @@ table {
     margin: auto;
     width: 100%;
     table-layout: fixed;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(223, 223, 223);
     border-radius: 5px;
 }
 
@@ -103,7 +103,7 @@ table {
 body>div.col-6>div>table>tbody {
     padding-left: 50px;
     font-weight: 300;
-    background-color: rgb(217, 215, 215);
+    background-color: rgb(238, 238, 238);
     border-radius: 0px 0px 7px 7px;
 }
 
@@ -111,6 +111,3 @@ body>div.col-6>div>table>tbody {
     transform: scale(1.03);
     padding-left: 30px;
 }
-
-
-/* adding a change to track new commits */
