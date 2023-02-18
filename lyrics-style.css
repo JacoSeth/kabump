@@ -1,0 +1,15 @@
+.song-title {
+    display: flex;
+    padding-left: 50px;
+    padding-top: 40px;
+}
+
+.body-lyrics {
+    background-color: aquamarine;
+    height: 542px;
+    overflow-y: scroll;
+    padding-top: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    width: 100%;
+}

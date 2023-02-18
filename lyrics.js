@@ -1,4 +1,5 @@
-htmlString =
+let title = "Educated Guess"
+let htmlString =
     `Lift me up, sit me up, or I won't make it<br>
 I set it down, I saw you turned around<br>
 I can't explain, Can you explain the rest?<br/>
@@ -54,11 +55,20 @@ async function fetchLyrics() {
     row = document.querySelector(".row")
     column = document.querySelector(".col-4")
     column.classList.add("order-last")
+    songTitle = document.createElement("div")
+    songTitle.classList.add("song-title")
+    songElement = document.createElement("h3")
+    titleNode = document.createTextNode(title)
     lyricsBody = document.createElement("div")
     lyricsBody.classList.add("body-lyrics")
     lyricsElement = document.createElement("p")
-    lyricsNode = document.createTextNode(htmlString)
-    lyricsElement.appendChild(lyricsNode)
+    lyricsElement.classList.add("body-lyrics-content")
+    lyricsElement.insertAdjacentHTML('afterbegin', htmlString)
+        // lyricsNode = document.createTextNode(htmlString)
+        // lyricsElement.appendChild(lyricsNode)
+    songElement.appendChild(titleNode)
+    songTitle.appendChild(songElement)
+    column.appendChild(songTitle)
     lyricsBody.appendChild(lyricsElement)
     column.appendChild(lyricsBody)
 }

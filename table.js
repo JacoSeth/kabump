@@ -10,7 +10,6 @@ function buildNav() {
     charContainer.classList = ["nav-container"]
     const charString = "1abcdefghijklmnopqrstuvwxyz"
     for (i = 0; i < charString.length; i++) {
-        // container = document.querySelector(".nav-container")
         char = charString[i]
         charElement = document.createElement("a")
         charElement.className = "navchar"
@@ -32,7 +31,7 @@ function displaySongData() {
                 // Select column for table, and row for column
                 const row = document.querySelector(".row")
                 const column = document.querySelector(".col-6")
-                column.classList.add("order-1")
+                column.classList.add("order-first")
 
                 // Wrapper Div to set scroll
                 const wrapper = document.createElement("div")
@@ -112,9 +111,7 @@ function displaySongData() {
                     const tr = document.createElement("tr")
                     tr.className = "table-body-row"
                     const trTitle = document.createElement("td")
-                        // ########
                     trTitle.setAttribute('data-id', `${titleStrip}`)
-                        // trTitle.classList.add(titleStrip) //Adding a classname of the Song Title to match the anchor tag
                     const trDebut = document.createElement("td")
                     trDebut.className = "td-debut"
                     const trCount = document.createElement("td")
@@ -183,43 +180,31 @@ function getSetAnchorTags() {
 
             // populate the array
             data.forEach(d => {
-                    arrayFromSongData.push(d["Song Name Sort"])
-                })
-                // arrayFromSongData = (983)['1000placestoseebeforeyoudie', '10thgrade', '1348', '13days', '19', '1901jump', '1999', '25or6to4', '2ndself', '2x2'...]
+                arrayFromSongData.push(d["Song Name Sort"])
+            })
 
             // define function to call on each character in letterString
             function returnFirstListing(x) {
                 holder = {}
                 arrayFromSongData.forEach(song => {
-                        // console.log(song)
-                        if (song.startsWith(x) && holder.hasOwnProperty(x) == false) {
-                            holder[`${x}`] = song
-                            mysongArray.push(song)
-                            console.log("pushed" + x)
-                        } else {
-                            // console.log(`the song that starts with ${x} is ${holder[`${x}`]}`)
-                            console.log("moving to next letter")
-                        }
-                    })
-                    // ^^^ Nothing wrong with this function
+                    // console.log(song)
+                    if (song.startsWith(x) && holder.hasOwnProperty(x) == false) {
+                        holder[`${x}`] = song
+                        mysongArray.push(song)
+                    } else {
+                        // console.log(`the song that starts with ${x} is ${holder[`${x}`]}`)
+                    }
+                })
 
-                console.log(mysongArray)
-                    // Add an ID so we can route links to each
+                // Add an ID so we can route links to each
                 for (i = 0; i < mysongArray.length; i++) {
-                    // _____________________________________we're only making it through two iterations of this loop__________________________
                     const listing = document.querySelector(`[data-id="${mysongArray[i]}"]`)
-                        // const listing = document.querySelector(`[class ="${mysongArray[i]}" ]`)
                     const songTitle = mysongArray[i]
-                        // const listing = document.querySelector(`.${songTitle}`)
-                        // Problem assigning class for this Element, or finding this element's class. Find where you assign the class
                     listing.classList.add(`anchor-${mysongArray[i][0]}`)
-                    console.log(listing)
                     listing.id = `anchor-${mysongArray[i][0]}`
                 }
             }
 
-            // call function on each letter
-            // console.log(letterString.length)
             for (l = 0; l < letterString.length; l++) {
                 char = letterString[l]
                 returnFirstListing(char);
@@ -232,7 +217,6 @@ function getSetAnchorTags() {
                     const itemToTag = document.getElementById(`nav-${char}`)
                     const scrollATagVal = `#anchor-${char}`
                     itemToTag.setAttribute("href", scrollATagVal)
-                        // scrollATag.appendChild(scrollATagNode)
                 }
             }
             placeAnchors();
