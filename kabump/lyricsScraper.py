@@ -28,3 +28,7 @@ def get_song_links():
     links = [songlinks.append(i) for i in links if '/song/' in i] 
 #     songlinks.append(links)
     return songlinks
+
+
+
+# will need to determine what source is best for scraping lyrics, may not be allThingUM
