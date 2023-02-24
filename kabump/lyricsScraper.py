@@ -31,4 +31,5 @@ def get_song_links():
 
 
 
-# will need to determine what source is best for scraping lyrics, may not be allThingUM
+# will need to determine what source is best for scraping lyrics, may not be allThingUM.
+#  Alternatively, a new way to scrape the original site could do
