@@ -102,12 +102,13 @@ table {
     text-align: center;
 }
 
-body>div.col-6>div>table>tbody {
+
+/* body>div.col-6>div>table>tbody {
     padding-left: 50px;
     font-weight: 300;
     background-color: rgb(238, 238, 238);
     border-radius: 0px 0px 7px 7px;
-}
+} */
 
 body>div.col-6>div>table>tbody>a {
     color: black;
