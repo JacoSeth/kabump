@@ -19,4 +19,8 @@ Architecture Prospectus
 2. Host app online
 3. Update semi-frequently
 4. Provide API via graphql?
+
+I really need to do better at actually coding. I think I'm just in a low spot because the scraping is a constant barrier to my plans. 
+
+Resolving to crack it open again tomorrow
     
