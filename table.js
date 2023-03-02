@@ -3,6 +3,7 @@ const arrayFromSongData = []
 const mysongArray = []
 const charString = "1abcdefghijklmnopqrstuvwxyz"
 
+// I'm proud of my work here, but is there a way to condense? 
 
 function buildNav() {
     const col = document.querySelector(".col-6")
